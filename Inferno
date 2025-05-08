@@ -1,4 +1,4 @@
-<h1>Inferno CTF</h1>
+**Inferno CTF**
 
 Connect to your Openvpn file as usual Start the machine wait for the IP.
 After getting the IP Address i ran rustscan "rustscan -a <TargetIP> -r <Range of the ports> -- -A -oN <Output0>"
