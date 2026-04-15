@@ -78,7 +78,7 @@ Nmap done: 1 IP address (1 host up) scanned in 25.11 seconds
 # H3 SSH
 From Watching Tyler I've learnt to check if SSH is password based or Key based so i decided to check for it looks like its passwd based.
 
-![Alt text](Boarderlands/Screenshots/sshpasswdbased.png)
+![Alt text](Screenshots/sshpasswdbased.png)
 
 ### H3 HTTP (80)
 I checked HTTP
