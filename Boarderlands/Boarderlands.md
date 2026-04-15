@@ -83,11 +83,11 @@ From Watching Tyler I've learnt to check if SSH is password based or Key based s
 ### H3 HTTP (80)
 I checked HTTP
 
-![Alt text](Boarderlands/Screenshots/HTTP.png)
+![Alt text](Screenshots/HTTP.png)
 
 so far it looks like a poorly done website and there seems to be a login page i tried basic passwords, I also ran Caido a proxy tool on the background just to capture the communication between the server and the client(Me).
 
-![Alt text](Boarderlands/Screenshots/Caido.png)
+![Alt text](Screenshots/Caido.png)
 
 I Also ran **Nuclei** to get some low hanging fruits i found a few
 
@@ -155,5 +155,5 @@ Nuclei Templates v10.4.1 Changelog
 ```
 A few caught my attention like the **git-config,php.info,CVE-2023-48795 and more**
 
-![Alt text](Boarderlands/Screenshots/phpinfo.png)
+![Alt text](Screenshots/phpinfo.png)
 
