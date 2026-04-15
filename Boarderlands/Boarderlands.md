@@ -75,4 +75,85 @@ Nmap done: 1 IP address (1 host up) scanned in 25.11 seconds
 
 ```
 
+# H3 SSH
+From Watching Tyler I've learnt to check if SSH is password based or Key based so i decided to check for it looks like its passwd based.
+
+![Alt text](Image.png)
+
+### H3 HTTP (80)
+I checked HTTP
+
+![Alt text](image)
+
+so far it looks like a poorly done website and there seems to be a login page i tried basic passwords, I also ran Caido a proxy tool on the background just to capture the communication between the server and the client(Me).
+
+![Alt text](caido)
+
+I Also ran **Nuclei** to get some low hanging fruits i found a few
+
+```
+└─$ nuclei -u http://10.113.154.171/              
+
+                     __     _
+   ____  __  _______/ /__  (_)
+  / __ \/ / / / ___/ / _ \/ /
+ / / / / /_/ / /__/ /  __/ /
+/_/ /_/\__,_/\___/_/\___/_/   v3.7.1
+
+                projectdiscovery.io
+
+[INF] Your current nuclei-templates v10.4.0 are outdated. Latest is v10.4.1
+[INF] Successfully updated nuclei-templates (v10.4.1) to /home/hacker/.local/nuclei-templates. GoodLuck!
+
+Nuclei Templates v10.4.1 Changelog
+┌───────┬───────┬──────────┬─────────┐
+│ TOTAL │ ADDED │ MODIFIED │ REMOVED │
+├───────┼───────┼──────────┼─────────┤
+│ 3924  │ 77    │ 3846     │ 1       │
+└───────┴───────┴──────────┴─────────┘
+[WRN] Found 1 templates with runtime error (use -validate flag for further examination)
+[INF] Current nuclei version: v3.7.1 (latest)
+[INF] Current nuclei-templates version: v10.4.1 (latest)
+[INF] New templates added in latest release: 76
+[INF] Templates loaded for current scan: 9976
+[WRN] Loading 17 unsigned templates for scan. Use with caution.
+[INF] Executing 9959 signed templates from projectdiscovery/nuclei-templates
+[INF] Targets loaded for current scan: 1
+[INF] Templates clustered: 2260 (Reduced 2134 Requests)
+[INF] Using Interactsh Server: oast.fun
+[phpinfo-files] [http] [low] http://10.113.154.171//info.php ["7.2.19"] [paths="/info.php"]
+[cookies-without-secure] [javascript] [info] 10.113.154.171 ["PHPSESSID"]
+[cookies-without-httponly] [javascript] [info] 10.113.154.171 ["PHPSESSID"]
+[waf-detect:nginxgeneric] [http] [info] http://10.113.154.171/
+[CVE-2023-48795] [javascript] [medium] 10.113.154.171:22 ["Vulnerable to Terrapin"]
+[ssh-auth-methods] [javascript] [info] 10.113.154.171:22 ["["publickey","password"]"]
+[ssh-password-auth] [javascript] [info] 10.113.154.171:22
+[ssh-server-enumeration] [javascript] [info] 10.113.154.171:22 ["SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.8"]
+[ssh-sha1-hmac-algo] [javascript] [info] 10.113.154.171:22
+[openssh-detect] [tcp] [info] 10.113.154.171:22 ["SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.8"]
+[nginx-eol:version] [http] [info] http://10.113.154.171/ ["1.14.0"]
+[nginx-version] [http] [info] http://10.113.154.171/ ["nginx/1.14.0"]
+[php-detect] [http] [info] http://10.113.154.171/
+[git-config] [http] [medium] http://10.113.154.171/.git/config
+[http-missing-security-headers:strict-transport-security] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:content-security-policy] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:permissions-policy] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:referrer-policy] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:cross-origin-opener-policy] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:cross-origin-resource-policy] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:x-frame-options] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:x-content-type-options] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:x-permitted-cross-domain-policies] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:clear-site-data] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:cross-origin-embedder-policy] [http] [info] http://10.113.154.171/
+[http-missing-security-headers:missing-content-type] [http] [info] http://10.113.154.171/
+[missing-cookie-samesite-strict] [http] [info] http://10.113.154.171/ ["PHPSESSID=a4ko786pid2to1ucrglkrh6rn7; path=/"]                                                                                                
+[tech-detect:nginx] [http] [info] http://10.113.154.171/
+[tech-detect:php] [http] [info] http://10.113.154.171/
+[git-logs-exposure] [http] [info] http://10.113.154.171/.git/logs/HEAD
+[INF] Scan completed in 5m. 30 matches found
+```
+A few caught my attention like the **git-config,php.info,CVE-2023-48795 and more**
+
+![Alt text](phpinfo)
 
